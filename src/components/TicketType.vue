@@ -12,7 +12,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="p-5 border border-solid border-radius-m divider-default rounded-lg cursor-pointer bg-surface-l1 ticket-drops-shadow" :class="{active: props.active}">
+  <div class="p-5 border border-solid border-radius-m divider-default rounded-lg cursor-pointer bg-surface-l1" :class="{active: props.active}">
     <div class="mb-3 flex justify-between">
       <span class="text-subtitle1">{{ props.ticket.name }}</span>
       <span class="text-subtitle1">${{ props.ticket.price }}</span>

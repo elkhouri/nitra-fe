@@ -28,7 +28,7 @@ const selectedCount = computed(() => Object.keys(selectedSessions.value).length)
         v-for="session in groupedSessions[currentDate]"
         :key="session.id"
         :session="session"
-        :active="selectedSessions[session.id]"
+        :active="!!selectedSessions[session.id]"
         @click="toggleSession(session)"
       />
     </div>

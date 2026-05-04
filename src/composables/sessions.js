@@ -11,7 +11,7 @@ export function useSessions () {
     if (selectedSessions.value[session.id]) {
       delete selectedSessions.value[session.id]
     } else {
-      selectedSessions.value[session.id] = true
+      selectedSessions.value[session.id] = session
     }
   }
 
