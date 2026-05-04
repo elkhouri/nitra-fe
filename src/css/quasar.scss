@@ -22,7 +22,16 @@
   font-size: 13px;
 }
 
-.q-stepper__tab--active {
+.q-stepper--horizontal {
+  .q-stepper__line:before, .q-stepper__line:after {
+    height: 2px;
+    border-radius: 1px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+}
+
+.q-stepper__tab--active  {
   .q-stepper__title {
     font-weight: 600;
   }
@@ -30,7 +39,30 @@
   .q-stepper__dot {
     background-color: var(--bg-brand-emphasis-rest);
   }
+
   .q-stepper__dot span {
     color: var(--text-inverse-default);
+  }
+
+  .q-stepper__line:before {
+    background-color: var(--bg-brand-emphasis-rest);
+  }
+}
+
+.q-stepper__tab--done  {
+  .q-stepper__title {
+    font-weight: 500;
+  }
+
+  .q-stepper__dot {
+    background-color: var(--bg-brand-emphasis-rest);
+  }
+
+  .q-stepper__dot span {
+    color: var(--text-inverse-default);
+  }
+
+  .q-stepper__line:before, .q-stepper__line:after {
+    background: var(--bg-brand-emphasis-rest);
   }
 }

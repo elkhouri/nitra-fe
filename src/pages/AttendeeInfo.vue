@@ -9,7 +9,7 @@ ticketType.value = event.ticketTypes[0].id
 
 <template>
   <q-page>
-    <h1 class="text-subtitle1 text-neutral q-mb-md">Select Ticket Type</h1>
+    <div class="text-subtitle1 text-neutral q-mb-md">Select Ticket Type</div>
     <div class="mb-8 flex space-x-4">
       <ticket-type
         v-for="ticket in event.ticketTypes"
