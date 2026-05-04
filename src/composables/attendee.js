@@ -1,16 +1,16 @@
 import { ref } from "vue";
 
-export function useAttendee() {
-  const ticketType = ref('');
-  const attendeeInfo = ref({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    jobTitle: "",
-    shippingAddress: ""
-  });
+const ticketType = ref('');
+const attendeeInfo = ref({
+  name: "",
+  email: "",
+  phone: "",
+  company: "",
+  jobTitle: "",
+  shippingAddress: ""
+});
 
+export function useAttendee() {
   return {
     attendeeInfo,
     ticketType,
