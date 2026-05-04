@@ -1,13 +1,6 @@
 <template>
-  <div class="header">
-    <h1 class="text-h4 text-primary">Nitra Event Registration</h1>
+  <div class="flex q-py-md q-px-xl">
+    <img class="pr-3" src="/img/Logo.svg" alt="Logo" />
+    <h1 class="text-h4 text-neutral">WebDev Summit 2025</h1>
   </div>
 </template>
-
-<style scoped>
-.header {
-  padding: 16px;
-  background-color: var(--q-primary);
-  color: white;
-}
-</style>
