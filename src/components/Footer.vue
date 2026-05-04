@@ -9,7 +9,7 @@ const { currentStep, goToNextStep } = useSteps()
     <div class="flex justify-between items-center">
       <div>
       </div>
-      <button class="bg-orange-400 text-white rounded py-2.5 px-5 border-radius-[10px] border-0 font-medium" @click="goToNextStep">Next: Session Selection</button>
+      <button class="bg-orange-400 hover:bg-orange-500 text-white rounded py-2.5 px-5 border-radius-[10px] border-0 font-medium cursor-pointer" @click="goToNextStep">Next: Session Selection</button>
     </div>
   </div>
 </template>
