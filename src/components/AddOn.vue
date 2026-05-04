@@ -1,6 +1,7 @@
 <script setup>
 import { format } from 'date-fns';
 import { computed, ref } from 'vue';
+import { useAddons } from '../composables/addons';
 
 const props = defineProps({
   addon: {
@@ -13,7 +14,9 @@ const props = defineProps({
   },
 })
 
-const quantity = ref(1);
+const { selectedAddons, groupedAddons, toggleAddon, updateAddon, updateAddonQuantity } = useAddons();
+
+const quantity = ref(0);
 
 const usedCapacity = computed(() => props.addon.capacity ? props.addon.registered / props.addon.capacity : 0);
 
@@ -32,6 +35,10 @@ const capacityDisplay = computed(() => {
   }
 })
 
+const active = computed(() => {
+  return !!selectedAddons.value[props.addon.id]?.active
+})
+
 function formatStartDate(date) {
   if (!date) return '';
   return format(new Date(date), 'MMM dd,hh:mm a');
@@ -45,18 +52,26 @@ function formatEndDate(date) {
 function incrementQuantity() {
   if (quantity.value < props.addon.maxQuantity) {
     quantity.value++;
+    updateAddonQuantity(props.addon, quantity.value)
   }
 }
 
 function decrementQuantity() {
-  if (quantity.value > 1) {
+  if (quantity.value > 0) {
     quantity.value--;
+    updateAddonQuantity(props.addon, quantity.value)
   }
+}
+
+function selectAddon(key, value) {
+  if (!props.addon.maxQuantity) {
+    toggleAddon(props.addon);
+  } 
 }
 </script>
 
 <template>
-  <div class="card-drop-shadow rounded border border-solid border-neutral-muted p-4">
+  <div class="card card-drop-shadow rounded border border-solid border-neutral-muted p-4" :class="{'card-active': active}" @click="selectAddon()">
     <div class="mb-2 flex items-center justify-between">
       <div class="text-subtitle1 text-neutral">{{ props.addon.name }}</div>
       <div class="text-subtitle1 text-primary">${{ props.addon.price }}</div>
@@ -67,8 +82,8 @@ function decrementQuantity() {
     <div class="flex items-center">
       <div v-if="props.addon.sizes" class="flex items-center mr-4">
         <label class="text-sm text-neutral-muted mr-2">Size:</label>
-        <select class="py-1 border-neutral-muted rounded-md">
-          <option v-for="size in props.addon.sizes" :key="size" :value="size" class="py-1">{{ size }}</option>
+        <select class="py-1 border-neutral-muted rounded-md" @change="updateAddon(props.addon, 'size', $event.target.value)">
+          <option v-for="size in props.addon.sizes" :key="size" :value="size" class="py-1" >{{ size }}</option>
         </select>
       </div>
       <div v-if="props.addon.maxQuantity" class="flex items-center">
