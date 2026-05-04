@@ -1,6 +1,7 @@
 import { ref } from "vue";
+import { event } from '../mocks/event';
 
-const ticketType = ref('');
+const ticketType = ref(event.ticketTypes.find(t => t.id === 'vip'));
 const attendeeInfo = ref({
   name: "",
   email: "",

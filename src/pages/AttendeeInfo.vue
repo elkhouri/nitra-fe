@@ -4,7 +4,7 @@ import { event } from '../mocks/event';
 import { useAttendee } from '../composables/attendee';
 
 const { attendee, ticketType, attendeeInfo } = useAttendee()
-ticketType.value = event.ticketTypes[0].id
+ticketType.value = event.ticketTypes[0]
 </script>
 
 <template>
@@ -16,8 +16,8 @@ ticketType.value = event.ticketTypes[0].id
         :key="ticket.id"
         :ticket="ticket"
         class="flex-1"
-        :active="ticketType && ticketType === ticket.id"
-        @click="ticketType = ticket.id"
+        :active="ticketType && ticketType.id === ticket.id"
+        @click="ticketType = ticket"
       />
     </div>
     <h1 class="mb-8 text-h3">Attendee Information</h1>
