@@ -42,7 +42,7 @@ export function useSteps() {
   function setStep(step) {
     if (step >= 1 && step <= Object.keys(stepRouteMap).length) {
       currentStep.value = step
-      clearErrors()
+      // clearErrors()
       routerNavigate()
     }
   }
