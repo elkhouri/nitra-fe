@@ -25,7 +25,7 @@ const showShipping = computed(() => {
   <q-page>
     <div class="w-full flex justify-between items-start">
       <div class="grow mr-8 max-w-[788px]">
-        <h1 class="text-subtitle1 text-neutral q-mb-lg">Select Add-ons</h1>
+        <div class="text-subtitle1 text-neutral q-mb-lg">Select Add-ons</div>
         <q-btn-toggle class="q-mb-lg" v-model="currentCategory" toggle-color="primary" :options="toggleOptions"/>
         <div v-if="showShipping" class="mb-6 p-4 rounded bg-info-subtle-rest">          
           <div class="font-semibold text-neutral flex items-center">

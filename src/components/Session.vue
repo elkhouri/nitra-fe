@@ -3,7 +3,6 @@ import { format } from 'date-fns';
 import { te } from 'date-fns/locale';
 import { computed } from 'vue';
 
-
 const props = defineProps({
   session: {
     type: Object,
