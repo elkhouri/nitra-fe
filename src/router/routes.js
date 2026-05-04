@@ -5,7 +5,7 @@ export default [
     children: [
       {
         path: '',
-        component: () => import('../pages/IndexPage.vue'),
+        component: () => import('../pages/AttendeeInfo.vue'),
       },
     ],
   },
