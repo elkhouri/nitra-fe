@@ -2,9 +2,11 @@ import { ref, computed } from "vue";
 import { groupBy } from "lodash-es";
 import { format } from "date-fns";
 import { addons } from '../mocks/addons';
+import { useSessions } from '../composables/sessions';
 
 const selectedAddons = ref({});
 const allAddons = ref(addons);
+const { selectedSessions, sessionsOverlap } = useSessions();
 
 export function useAddons () {
   function toggleAddon(addon) {
@@ -41,12 +43,32 @@ export function useAddons () {
     return Object.values(selectedAddons.value).some(addon => addon.category === 'merchandise' && addon.active);
   });
 
+  function validateAddons() {
+    const errors = {};
+    const workshops = Object.values(selectedAddons.value).filter(addon => addon.category === 'workshop');
+    const sessionArray = Object.values(selectedSessions.value);
+    for (let i = 0; i < workshops.length; i++) {
+      const workshop = workshops[i];
+      if (workshop.capacity <= workshop.registered) {
+        errors[workshop.id] = `Workshop "${workshop.name}" is at full capacity.`;
+      }
+      for (let j = 0; j < sessionArray.length; j++) {
+        const otherSession = sessionArray[j];
+        if (sessionsOverlap(workshop, otherSession)) {
+          errors[workshop.id] = `Workshop "${workshop.name}" conflicts with "${otherSession.title}".`;
+        }
+      }
+    }
+    return errors;
+  }
+
   return {
     selectedAddons,
     groupedAddons,
     toggleAddon,
     updateAddon,
     updateAddonQuantity,
-    hasMerchandise
+    hasMerchandise,
+    validateAddons
   };
 }

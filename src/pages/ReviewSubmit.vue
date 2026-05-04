@@ -86,17 +86,18 @@ const usdFormatter = new Intl.NumberFormat('en-US', {
       </div>
     </div>
 
-    <div class="mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted">
+    <div class="card mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: errors['Step 3']}">
       <div class="flex justify-between">
-        <div class="text-subtitle1">Add-ons</div>
+        <div class="card-title text-subtitle1">Add-ons</div>
         <div class="text-sm underline text-teal-500"><router-link to="/addons" @click="setStep(3)">Edit → Step 3</router-link></div>
       </div>
       <div class="flex justify-between" v-for="addon in Object.values(selectedAddons)" :key="addon.id">
         <div class="text-sm text-neutral-muted capitalize">{{ addon.category }}</div>
-        <div class="text-sm text-neutral">
+        <div v-if="!errors['Step 3']?.[addon.id]" class="text-sm text-neutral">
           {{ addon.name }}
           <span v-if="addon.quantity">X {{ addon.quantity }}</span>
           ({{usdFormatter.format(addon.price * (addon.quantity || 1))}})</div>
+        <div v-else class="text-sm text-danger">{{ addon.name }} (conflict)</div>
       </div>
     </div>
 

@@ -38,7 +38,7 @@ export function useSessions () {
     const sessionArray = Object.values(selectedSessions.value);
     for (let i = 0; i < sessionArray.length; i++) {
       const session = sessionArray[i];
-      if (session.capacity <= session.registeredAttendees) {
+      if (session.capacity <= session.registered) {
         errors[session.id] = `Session "${session.title}" is at full capacity.`;
       }
       for (let j = i + 1; j < sessionArray.length; j++) {
@@ -55,6 +55,7 @@ export function useSessions () {
     selectedSessions,
     groupedSessions,
     toggleSession,
-    validateSessions
+    validateSessions,
+    sessionsOverlap
   };
 }
