@@ -98,5 +98,6 @@ function selectAddon(key, value) {
         <span class="text-[10px] text-neutral-quiet">max {{ props.addon.maxQuantity }}</span>
       </div>
     </div>
+    <div v-if="props.addon.maxQuantity && props.addon.active" class="mt-2 text-xs font-semibold text-success">✓ Added to order</div>
   </div>
 </template>
