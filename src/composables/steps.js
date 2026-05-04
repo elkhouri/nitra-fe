@@ -1,8 +1,9 @@
 import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { useRoute } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router'
+import { useValidation } from '../composables/validation';
 
 const currentStep = ref(1)
+
 const stepRouteMap = {
   1: 'attendee-info',
   2: 'sessions',
@@ -13,12 +14,20 @@ const stepRouteMap = {
 export function useSteps() {
   const router = useRouter()
   const route = useRoute()
+  const { validateForm, hasErrors, clearErrors } = useValidation()
 
   const atLastStep = computed(() => currentStep.value === Object.keys(stepRouteMap).length)
 
   function goToNextStep() {
     if (currentStep.value < Object.keys(stepRouteMap).length) {
+      if (currentStep.value === 4) {
+        validateForm()
+        if (hasErrors.value) {
+          return
+        }
+      }
       currentStep.value++
+      clearErrors()
       routerNavigate()
     }
   }
@@ -33,6 +42,7 @@ export function useSteps() {
   function setStep(step) {
     if (step >= 1 && step <= Object.keys(stepRouteMap).length) {
       currentStep.value = step
+      clearErrors()
       routerNavigate()
     }
   }

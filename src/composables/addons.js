@@ -37,11 +37,16 @@ export function useAddons () {
     return groupBy(allAddons.value, 'category');
   });
 
+  const hasMerchandise = computed(() => {
+    return Object.values(selectedAddons.value).some(addon => addon.category === 'merchandise' && addon.active);
+  });
+
   return {
     selectedAddons,
     groupedAddons,
     toggleAddon,
     updateAddon,
     updateAddonQuantity,
+    hasMerchandise
   };
 }

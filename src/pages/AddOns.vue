@@ -5,7 +5,7 @@ import { useAddons } from '../composables/addons';
 import AddOn from '../components/AddOn.vue';
 import OrderSummary from '../components/OrderSummary.vue';
 
-const { selectedAddons, groupedAddons, toggleAddon } = useAddons();
+const { selectedAddons, groupedAddons, toggleAddon, hasMerchandise } = useAddons();
 
 const currentCategory = ref('workshop');
 const toggleOptions = [
@@ -17,7 +17,7 @@ const displayAddons = computed(() => {
   return groupedAddons.value[currentCategory.value] || [];
 })
 const showShipping = computed(() => {
-  return Object.values(selectedAddons.value).some(addon => addon.category === 'merchandise')
+  return hasMerchandise.value && currentCategory.value === 'merchandise';
 })
 </script>
 
