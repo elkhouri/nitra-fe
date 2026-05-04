@@ -1,0 +1,32 @@
+.q-stepper__dot {
+  height: 32px;
+  width: 32px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: var(--bg-surface-l2);
+  
+  span {
+    color: var(--text-neutral-quiet);
+  }
+}
+
+.q-stepper__content {
+  display: none
+}
+
+.q-stepper__title {
+  font-size: 13px;
+}
+
+.q-stepper__tab--active {
+  .q-stepper__title {
+    font-weight: 600;
+  }
+
+  .q-stepper__dot {
+    background-color: var(--bg-brand-emphasis-rest);
+  }
+  .q-stepper__dot span {
+    color: var(--text-inverse-default);
+  }
+}

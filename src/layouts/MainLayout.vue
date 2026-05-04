@@ -1,6 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <Header />
+    <Stepper />
 
     <q-page-container>
       <router-view />
@@ -10,4 +11,5 @@
 
 <script setup>
 import Header from '../components/Header.vue'
+import Stepper from '../components/Stepper.vue'
 </script>
