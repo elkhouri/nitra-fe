@@ -19,4 +19,8 @@
 import Header from '../components/Header.vue'
 import Stepper from '../components/Stepper.vue'
 import Footer from '../components/Footer.vue'
+import { useSteps } from '../composables/steps';
+
+const { setStepFromRoute } = useSteps();
+setStepFromRoute()
 </script>
