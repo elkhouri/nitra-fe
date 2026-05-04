@@ -11,6 +11,10 @@ export default [
         path: 'sessions',
         component: () => import('../pages/SelectSessions.vue'),
       },
+      {
+        path: 'addons',
+        component: () => import('../pages/AddOns.vue'),
+      },
     ],
   },
 ]
