@@ -38,9 +38,4 @@ const props = defineProps({
   border: 2px solid var(--bg-brand-emphasis-rest);
   margin: -1px;
 }
-
-.ticket-drops-shadow {
-  box-shadow: 0px 1px 3px 0px #0000000A;
-  box-shadow: 0px 4px 16px 0px #00000014;
-}
 </style>
