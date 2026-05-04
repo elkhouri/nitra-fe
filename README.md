@@ -101,4 +101,3 @@ This project uses the Nitra semantic design token system. All tokens are availab
 ## Submission
 
 Please refer to the **Official Interview Doc** sent to you by HR for the full submission requirements (expected effort, deadline, `PLAN.md` spec, commit history, AI usage notes, and how to deliver). That document is the authoritative source — if anything here conflicts, follow the Official Doc.
-
