@@ -7,6 +7,10 @@ export default [
         path: '',
         component: () => import('../pages/AttendeeInfo.vue'),
       },
+      {
+        path: 'sessions',
+        component: () => import('../pages/SelectSessions.vue'),
+      },
     ],
   },
 ]
