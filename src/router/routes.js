@@ -18,10 +18,15 @@ export default [
         component: () => import('../pages/AddOns.vue'),
         name: 'addons',
       },
-    {
+      {
         path: 'review',
         component: () => import('../pages/ReviewSubmit.vue'),
         name: 'review',
+      },
+            {
+        path: 'complete',
+        component: () => import('../pages/RegistrationComplete.vue'),
+        name: 'complete',
       },
     ],
   },

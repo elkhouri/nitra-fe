@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useRoute } from 'vue-router';
 
@@ -8,13 +8,16 @@ const stepRouteMap = {
   2: 'sessions',
   3: 'addons',
   4: 'review',
+  5: 'complete'
 }
 export function useSteps() {
   const router = useRouter()
   const route = useRoute()
 
+  const atLastStep = computed(() => currentStep.value === Object.keys(stepRouteMap).length)
+
   function goToNextStep() {
-    if (currentStep.value < 4) {
+    if (currentStep.value < Object.keys(stepRouteMap).length) {
       currentStep.value++
       routerNavigate()
     }
@@ -23,6 +26,13 @@ export function useSteps() {
   function goToPreviousStep() {
     if (currentStep.value > 1) {
       currentStep.value--
+      routerNavigate()
+    }
+  }
+
+  function setStep(step) {
+    if (step >= 1 && step <= Object.keys(stepRouteMap).length) {
+      currentStep.value = step
       routerNavigate()
     }
   }
@@ -46,6 +56,8 @@ export function useSteps() {
     currentStep,
     goToNextStep,
     goToPreviousStep,
-    setStepFromRoute
+    setStep,
+    setStepFromRoute,
+    atLastStep
   }
 }

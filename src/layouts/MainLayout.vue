@@ -1,8 +1,8 @@
 <template>
   <q-layout view="lHh Lpr lfr">
     <q-header> 
-      <Header />
-      <Stepper />
+      <Header  />
+      <Stepper v-if="!atLastStep" />
     </q-header>
 
     <q-page-container class="px-30">
@@ -10,7 +10,7 @@
     </q-page-container>
 
     <q-footer>
-      <Footer />
+      <Footer v-if="!atLastStep" />
     </q-footer>
   </q-layout>
 </template>
@@ -21,6 +21,6 @@ import Stepper from '../components/Stepper.vue'
 import Footer from '../components/Footer.vue'
 import { useSteps } from '../composables/steps';
 
-const { setStepFromRoute } = useSteps();
+const { setStepFromRoute, atLastStep } = useSteps();
 setStepFromRoute()
 </script>
