@@ -6,7 +6,7 @@
     </q-header>
 
     <q-page-container class="px-30">
-      <router-view />
+      <router-view class="pt-10" />
     </q-page-container>
 
     <q-footer>
