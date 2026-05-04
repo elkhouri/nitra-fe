@@ -16,7 +16,7 @@ const props = defineProps({
 
 const { selectedAddons, groupedAddons, toggleAddon, updateAddon, updateAddonQuantity } = useAddons();
 
-const quantity = ref(0);
+const quantity = ref(props.addon.quantity || 0);
 
 const usedCapacity = computed(() => props.addon.capacity ? props.addon.registered / props.addon.capacity : 0);
 
