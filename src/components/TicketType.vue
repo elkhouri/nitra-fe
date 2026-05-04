@@ -24,8 +24,10 @@ const props = defineProps({
         {{ perk }}
       </div>
     </div>
-    <div v-if="props.active" class="text-[11px] font-medium py-[3px] px-3 bg-green-700 rounded-full text-white inline">
-      ✓ Selected
+    <div class="h-5">
+      <div v-if="props.active" class="text-[11px] font-medium py-[3px] px-3 bg-green-700 rounded-full text-white inline">
+        ✓ Selected
+      </div>
     </div>
   </div>
 </template>
@@ -34,6 +36,7 @@ const props = defineProps({
 .active {
   background-color: var(--bg-brand-subtle-rest);
   border: 2px solid var(--bg-brand-emphasis-rest);
+  margin: -1px;
 }
 
 .ticket-drops-shadow {
