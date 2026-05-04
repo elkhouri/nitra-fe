@@ -3,7 +3,7 @@
     <Header />
     <Stepper />
 
-    <q-page-container>
+    <q-page-container class="px-30 mt-10">
       <router-view />
     </q-page-container>
   </q-layout>
