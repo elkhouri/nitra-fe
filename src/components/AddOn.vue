@@ -82,17 +82,17 @@ function selectAddon(key, value) {
     <div class="flex items-center">
       <div v-if="props.addon.sizes" class="flex items-center mr-4">
         <label class="text-sm text-neutral-muted mr-2">Size:</label>
-        <select class="py-1 border-neutral-muted rounded-md" @change="updateAddon(props.addon, 'size', $event.target.value)">
+        <select class="py-1 border-neutral-muted rounded-md hover:bg-surface-l2 " @change="updateAddon(props.addon, 'size', $event.target.value)">
           <option v-for="size in props.addon.sizes" :key="size" :value="size" class="py-1" >{{ size }}</option>
         </select>
       </div>
       <div v-if="props.addon.maxQuantity" class="flex items-center">
         <label class="text-sm text-neutral-muted mr-2">Qty:</label>
-        <button class="border-0 bg-surface-l1 rounded-md flex items-center justify-center size-[28px]" @click="decrementQuantity">
+        <button class="border-0 bg-surface-l1 hover:bg-surface-l2 rounded-md flex items-center justify-center size-[28px]" @click="decrementQuantity">
           <img src="/img/minus-icon.svg" />
         </button>
         <span class="mx-2 font-semibold text-neutral">{{ quantity }}</span>
-        <button class="mr-2 border-0 bg-surface-l1 rounded-md flex items-center justify-center size-[28px]" @click="incrementQuantity">
+        <button class="mr-2 border-0 bg-surface-l1 hover:bg-surface-l2 rounded-md flex items-center justify-center size-[28px]" @click="incrementQuantity">
           <img src="/img/plus-icon.svg" />
         </button>
         <span class="text-[10px] text-neutral-quiet">max {{ props.addon.maxQuantity }}</span>
