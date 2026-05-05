@@ -60,7 +60,7 @@ export function useAddons () {
 
   /**
    * Validates the workshops to not conflict with session times
-   * @returns {Error} the workshops with conflict
+   * @returns {ErrorMsg} the workshops with conflict
    */
   function validateAddons() {
     const errors = {};

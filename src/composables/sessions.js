@@ -48,7 +48,7 @@ export function useSessions () {
 
   /**
    * Validates the sessions to not conflict with each other
-   * @returns {Error} errors - the sessions with conflicts
+   * @returns {ErrorMsg} errors - the sessions with conflicts
    */
   function validateSessions() {
     const errors = {};

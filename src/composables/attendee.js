@@ -17,7 +17,7 @@ export function useAttendee() {
 
   /**
    * Validates the attendee to have the required fields with valid formats
-   * @returns {Error} the missing or wrongly formatted fields
+   * @returns {ErrorMsg} the missing or wrongly formatted fields
    */
   function validateAttendee() {
     const errors = {};
