@@ -42,7 +42,6 @@ export function useSteps() {
     }
     const nextStep = nextSteps[currentStep.value]
     currentStep.value = nextStep
-    clearErrors()
     routerNavigate(nextStep)
   }
 
@@ -54,7 +53,6 @@ export function useSteps() {
     }
     const prevStep = prevSteps[currentStep.value]
     currentStep.value = prevStep
-    clearErrors()
     routerNavigate(prevStep)
   }
 
