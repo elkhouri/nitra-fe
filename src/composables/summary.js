@@ -8,6 +8,9 @@ const { selectedAddons } = useAddons();
 export const useSummary = () => {
   const isVIP = computed(() => ticketType.value && ticketType.value.id === 'vip');
 
+  /**
+   * The amount of the 10% discount applied to the workshops if the ticket type is VIP
+   */
   const workshopDiscount = computed(() => {
     if (!isVIP.value) return 0
 
@@ -19,6 +22,9 @@ export const useSummary = () => {
     }, 0);
   });
 
+  /**
+   * The total price of the cart with all the items and discount included
+   */
   const totalPrice = computed(() => {
     if (!ticketType.value) return 0;
 

@@ -25,7 +25,10 @@ export function useSteps() {
   const { validateForm, hasErrors, clearErrors } = useValidation()
 
   const atLastStep = computed(() => currentStep.value === STEPS.COMPLETE)
-
+  
+  /**
+   * Goes to the next step and validates the form at the review step before proceeding
+   */
   function goToNextStep() {
     if (currentStep.value === STEPS.REVIEW) {
       validateForm()
@@ -45,6 +48,9 @@ export function useSteps() {
     routerNavigate(nextStep)
   }
 
+  /**
+   * Goes to the previous step
+   */
   function goToPreviousStep() {
     const prevSteps = {
       [STEPS.SESSION]: STEPS.ATTENDEE,
@@ -56,11 +62,19 @@ export function useSteps() {
     routerNavigate(prevStep)
   }
 
+  /**
+   * Sets the currentStep
+   * @param {Step} step - the step
+   */
   function setStep(step) {
     currentStep.value = step
     routerNavigate()
   }
 
+  /**
+   * Goes to route associated with a step
+   * @param {Step} step - the step to navigate to
+   */
   function routerNavigate(nextStep) {
     const routeName = stepRouteMap[nextStep]
     if (routeName) {
@@ -68,6 +82,9 @@ export function useSteps() {
     }
   }
 
+  /**
+   * Sets the currentStep from the current route
+   */
   function setStepFromRoute() {
     const routeName = route.name
     const step = Object.keys(stepRouteMap).find(key => stepRouteMap[key] === routeName)

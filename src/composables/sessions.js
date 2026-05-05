@@ -7,6 +7,10 @@ const selectedSessions = ref({});
 const allSessions = ref(sessions);
 
 export function useSessions () {
+  /**
+   * Toggles the session's selected state
+   * @param {Session} session - the session to toggle.
+   */
   function toggleSession(session) {
     if (session.registered >= session.capacity) {
       return; // Do not allow selection if session is at full capacity
@@ -25,6 +29,12 @@ export function useSessions () {
     });
   });
 
+  /**
+   * Checks whether the sessions overlap
+   * @param {Session} sessionA - the first session to check.
+   * @param {Session} sessionA - the first session to check.
+   * @returns {Session} the second session to check.
+   */
   function sessionsOverlap(sessionA, sessionB) {
     const startA = new Date(sessionA.date);
     const endA = new Date(sessionA.endDate);
@@ -36,6 +46,10 @@ export function useSessions () {
     );
   }
 
+  /**
+   * Validates the sessions to not conflict with each other
+   * @returns {Error} errors - the sessions with conflicts
+   */
   function validateSessions() {
     const errors = {};
     const sessionArray = Object.values(selectedSessions.value);

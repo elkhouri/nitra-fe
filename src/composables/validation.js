@@ -10,20 +10,32 @@ const { validateAddons } = useAddons()
 
 const errors = ref({});
 
+/**
+ * Validates the whole form and sets the error values accordingly
+ */
 function validateForm() {
   errors.value[STEPS.ATTENDEE] = validateAttendee();
   errors.value[STEPS.SESSION] = validateSessions();
   errors.value[STEPS.ADDON] = validateAddons();
 }
 
+/**
+ * Clears the errors
+ */
 function clearErrors() {
   errors.value = {};
 }
 
+/**
+ * Checks whether there are any errors
+ */
 const hasErrors = computed(() => {
   return Object.values(errors.value).some(stepError => Object.keys(stepError).length > 0);
 })
 
+/**
+ * Checks whether a certain step has errors
+ */
 function hasStepErrors(step) {
   return Object.keys(errors.value[step] || {}).length > 0;
 }

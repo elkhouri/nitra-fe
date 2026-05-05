@@ -9,6 +9,10 @@ const allAddons = ref(addons);
 const { selectedSessions, sessionsOverlap } = useSessions();
 
 export function useAddons () {
+  /**
+   * Toggles the addon's selected state and sets active to true
+   * @param {Addon} addon - the addon to toggle.
+   */
   function toggleAddon(addon) {
     if (selectedAddons.value[addon.id]) {
       delete selectedAddons.value[addon.id]
@@ -18,6 +22,12 @@ export function useAddons () {
     }
   }
 
+  /**
+   * Update's the addon's key with value without setting the active state
+   * @param {Addon} addon - the addon to update.
+   * @param {string} key - the key to update.
+   * @param {string} value - the value to update.
+   */
   function updateAddon(addon, key, value) {
     if (!selectedAddons.value[addon.id]) {
       selectedAddons.value[addon.id] = addon
@@ -25,6 +35,11 @@ export function useAddons () {
     selectedAddons.value[addon.id][key] = value
   }
 
+  /**
+   * Update's the addon's quantity and unselects if quantity is 0
+   * @param {Addon} addon - the addon to update.
+   * @param {string} quantity - the key to update.
+   */
   function updateAddonQuantity(addon, quantity) {
     if (!quantity) {
       selectedAddons.value[addon.id]['active'] = false
@@ -43,6 +58,10 @@ export function useAddons () {
     return Object.values(selectedAddons.value).some(addon => addon.category === 'merchandise' && addon.active);
   });
 
+  /**
+   * Validates the workshops to not conflict with session times
+   * @returns {Error} the workshops with conflict
+   */
   function validateAddons() {
     const errors = {};
     const workshops = Object.values(selectedAddons.value).filter(addon => addon.category === 'workshop');
@@ -53,7 +72,6 @@ export function useAddons () {
         errors[workshop.id] = `Workshop "${workshop.name}" is at full capacity.`;
       }
       const overlapSession = workshopOverlapSession(workshop);
-      console.log('Validating workshop:', workshop.name, 'Overlap session:', overlapSession ? overlapSession.title : 'None');
       if (overlapSession) {
         errors[workshop.id] = `Workshop "${workshop.name}" conflicts with "${overlapSession.title}".`;
       }
@@ -61,6 +79,11 @@ export function useAddons () {
     return errors;
   }
 
+  /**
+   * Checks whether the workshop conflicts with a session
+   * @param {Addon} workshop - the workshop to check.
+   * @returns {Session} the session that conflicts if any
+   */
   function workshopOverlapSession(workshop) {
     if (workshop.category !== 'workshop') {
       return false;
@@ -69,6 +92,9 @@ export function useAddons () {
     return sessionArray.find(session => sessionsOverlap(workshop, session));
   }
 
+  /**
+   * Clears all workshops that conflicts with a session
+   */
   function clearOverlapWorkshop() {
     for (const addon of Object.values(selectedAddons.value)) {
       if (addon.category === 'workshop' && workshopOverlapSession(addon)) {

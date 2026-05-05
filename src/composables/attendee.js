@@ -14,6 +14,11 @@ const attendeeInfo = ref({
 
 export function useAttendee() {
   const { hasMerchandise } = useAddons();
+
+  /**
+   * Validates the attendee to have the required fields with valid formats
+   * @returns {Error} the missing or wrongly formatted fields
+   */
   function validateAttendee() {
     const errors = {};
     const phoneRegex = /^\+[1-9]\d{1,14}$/;
