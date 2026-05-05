@@ -20,7 +20,7 @@ function clearErrors() {
 }
 
 const hasErrors = computed(() => {
-  return Object.keys(errors.value).length > 0;
+  return Object.values(errors.value).some(stepError => Object.keys(stepError).length > 0);
 })
 
 function hasStepErrors(step) {
