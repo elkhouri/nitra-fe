@@ -16,6 +16,8 @@ const props = defineProps({
 
 const usedCapacity = computed(() => props.session.capacity ? props.session.registered / props.session.capacity : 0);
 
+const isFull = computed(() => props.session.registered >= props.session.capacity);
+
 const capacityDisplay = computed(() => {
   const spotsLeft = props.session.capacity - props.session.registered;
   if (usedCapacity.value >= 1) {
@@ -51,15 +53,30 @@ function formatDate(date) {
 </script>
 
 <template>
-  <div class="card rounded border border-solid border-neutral-muted p-4" :class="{'active': props.active}">
+  <div class="card rounded border border-solid border-neutral-muted p-4" :class="{'active': props.active, disabled: isFull}">
     <div class="flex items-center justify-between">
-      <div class="uppercase text-xs rounded-full py-[3px] px-2.5 bg-gray-50">{{ props.session.track }}</div>
-      <q-checkbox size="xs" :model-value="active"/>
+      <div class="badge uppercase text-xs rounded-full py-[3px] px-2.5 bg-gray-50">{{ props.session.track }}</div>
+      <q-checkbox v-if="!isFull" size="xs" :model-value="active"/>
     </div>
-    <div class="mb-2 text-subtitle1">{{ props.session.title }}</div>
-    <div class="mb-2 text-sm text-neutral-muted">{{ props.session.speaker }}, {{ props.session.speakerTitle }}</div>
-    <div class="mb-2 text-xs text-neutral-quiet">{{ formatDate(props.session.date) }} - {{ formatDate(props.session.endDate) }}</div>
+    <div class="mb-2 title text-subtitle1">{{ props.session.title }}</div>
+    <div class="mb-2 body text-sm text-neutral-muted">{{ props.session.speaker }}, {{ props.session.speakerTitle }}</div>
+    <div class="mb-2 body text-xs text-neutral-quiet">{{ formatDate(props.session.date) }} - {{ formatDate(props.session.endDate) }}</div>
     <q-linear-progress class="mb-2" :value="usedCapacity" :color="capacityDisplay.progressColor" rounded/>
     <div class="text-xs" :class="capacityDisplay.textClass">{{ capacityDisplay.text }}</div>
   </div>
 </template>
+
+<style scoped>
+.disabled {
+  background-color: var(--bg-surface-l2);
+  .badge {
+    background-color: transparent;
+  }
+  .title {
+    color: var(--text-neutral-disabled);
+  }
+  .body {
+    color: var(--text-neutral-disabled);
+  }
+}
+</style>

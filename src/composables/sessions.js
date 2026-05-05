@@ -8,6 +8,9 @@ const allSessions = ref(sessions);
 
 export function useSessions () {
   function toggleSession(session) {
+    if (session.registered >= session.capacity) {
+      return; // Do not allow selection if session is at full capacity
+    }
     if (selectedSessions.value[session.id]) {
       delete selectedSessions.value[session.id]
     } else {
