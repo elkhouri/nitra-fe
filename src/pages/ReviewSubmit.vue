@@ -37,7 +37,7 @@ const usdFormatter = new Intl.NumberFormat('en-US', {
     </transition>
     <div class="text-h3 text-neutral q-mb-lg">Review Your Registration</div>
 
-    <div class="card mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: hasStepErrors(STEPS.ATTENDEE)}">
+    <div class="card shadow-none mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: hasStepErrors(STEPS.ATTENDEE)}">
       <div class="flex justify-between">
         <div class="card-title text-subtitle1">Attendee Information</div>
         <div class="text-sm underline text-teal-500"><router-link to="/" @click="setStep(STEPS.ATTENDEE)">Edit → Step 1</router-link></div>
@@ -80,7 +80,7 @@ const usdFormatter = new Intl.NumberFormat('en-US', {
       </div>
     </div>
 
-    <div class="card mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: hasStepErrors(STEPS.SESSION)}">
+    <div class="card shadow-none mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: hasStepErrors(STEPS.SESSION)}">
       <div class="flex justify-between">
         <div class="card-title text-subtitle1">Selected Sessions</div>
         <div class="text-sm underline text-teal-500"><router-link to="/sessions" @click="setStep(STEPS.SESSION)">Edit → Step 2</router-link></div>
@@ -92,7 +92,7 @@ const usdFormatter = new Intl.NumberFormat('en-US', {
       </div>
     </div>
 
-    <div class="card mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: hasStepErrors(STEPS.ADDON)}">
+    <div class="card shadow-none mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: hasStepErrors(STEPS.ADDON)}">
       <div class="flex justify-between">
         <div class="card-title text-subtitle1">Add-ons</div>
         <div class="text-sm underline text-teal-500"><router-link to="/addons" @click="setStep(STEPS.ADDON)">Edit → Step 3</router-link></div>
