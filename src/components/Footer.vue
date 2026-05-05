@@ -4,7 +4,6 @@ import { useRoute } from 'vue-router';
 import { useSteps, STEPS } from '../composables/steps';
 import { useValidation } from '../composables/validation';
 
-
 const { currentStep, goToNextStep, goToPreviousStep } = useSteps()
 const { errors, hasErrors, hasStepErrors } = useValidation()
 const route = useRoute();

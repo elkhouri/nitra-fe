@@ -29,4 +29,13 @@
       color: var(--text-neutral-disabled);
     }
   }
+
+  &.error {
+    border-color: var(--border-danger-emphasis);
+    background-color: var(--bg-surface-l0);
+
+    &:hover {
+      background-color: var(--bg-surface-l1);
+    }
+  }
 }

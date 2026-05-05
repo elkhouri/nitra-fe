@@ -3,12 +3,20 @@ import { ref, computed } from 'vue';
 import { sessions } from '../mocks/sessions';
 import Session from '../components/Session.vue';
 import { useSessions } from '../composables/sessions';
+import { useValidation } from '../composables/validation';
+import { STEPS } from '../composables/steps';
 
 const { selectedSessions, toggleSession, groupedSessions } = useSessions();
+const { errors } = useValidation()
 
 const currentDate = ref(Object.keys(groupedSessions.value)[0] || '');
 const toggleOptions = Object.entries(groupedSessions.value).map(([key, value]) => ({ label: key, value: key }));
 const selectedCount = computed(() => Object.keys(selectedSessions.value).length);
+
+function handleSession (session) {
+  if (errors.value[STEPS.SESSION]?.[session.id]) delete errors.value[STEPS.SESSION][session.id]
+  toggleSession(session)
+}
 </script>
 
 <template>
@@ -29,7 +37,7 @@ const selectedCount = computed(() => Object.keys(selectedSessions.value).length)
         :key="session.id"
         :session="session"
         :active="!!selectedSessions[session.id]"
-        @click="toggleSession(session)"
+        @click="handleSession(session)"
       />
     </div>
   </q-page>

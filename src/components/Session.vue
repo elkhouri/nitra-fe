@@ -1,7 +1,8 @@
 <script setup>
 import { format } from 'date-fns';
-import { te } from 'date-fns/locale';
 import { computed } from 'vue';
+import { useValidation } from '../composables/validation';
+import { STEPS } from '../composables/steps';
 
 const props = defineProps({
   session: {
@@ -13,6 +14,8 @@ const props = defineProps({
     default: false,
   },
 })
+
+const { errors } = useValidation()
 
 const trackBadgeClasses = {
   'main': 'bg-gray-50 text-gray-700',
@@ -60,7 +63,7 @@ function formatDate(date) {
 </script>
 
 <template>
-  <div class="card rounded border border-solid border-neutral-muted p-4" :class="{'active': props.active, full: isFull}">
+  <div class="card rounded border border-solid border-neutral-muted p-4" :class="{'active': props.active, full: isFull, error: errors[STEPS.SESSION]?.[props.session.id]}">
     <div class="mb-1 flex items-center justify-between">
       <div class="badge uppercase text-xs rounded-full py-[3px] px-2.5" :class="trackBadgeClasses[props.session.track]">
         {{ props.session.track }}
