@@ -76,19 +76,3 @@ function formatDate(date) {
     <div class="text-xs" :class="capacityDisplay.textClass">{{ capacityDisplay.text }}</div>
   </div>
 </template>
-
-<style scoped>
-.full {
-  background-color: var(--bg-surface-l2);
-  .badge {
-    background-color: transparent;
-    color: var(--text-gray-700);
-  }
-  .title {
-    color: var(--text-neutral-disabled);
-  }
-  .body {
-    color: var(--text-neutral-disabled);
-  }
-}
-</style>

@@ -5,7 +5,7 @@ import { useAddons } from '../composables/addons';
 import AddOn from '../components/AddOn.vue';
 import OrderSummary from '../components/OrderSummary.vue';
 
-const { selectedAddons, groupedAddons, toggleAddon, hasMerchandise } = useAddons();
+const { selectedAddons, groupedAddons, toggleAddon, hasMerchandise, clearOverlapWorkshop } = useAddons();
 
 const currentCategory = ref('workshop');
 const toggleOptions = [
@@ -19,6 +19,7 @@ const displayAddons = computed(() => {
 const showShipping = computed(() => {
   return hasMerchandise.value && currentCategory.value === 'merchandise';
 })
+clearOverlapWorkshop()
 </script>
 
 <template>

@@ -52,14 +52,29 @@ export function useAddons () {
       if (workshop.capacity <= workshop.registered) {
         errors[workshop.id] = `Workshop "${workshop.name}" is at full capacity.`;
       }
-      for (let j = 0; j < sessionArray.length; j++) {
-        const otherSession = sessionArray[j];
-        if (sessionsOverlap(workshop, otherSession)) {
-          errors[workshop.id] = `Workshop "${workshop.name}" conflicts with "${otherSession.title}".`;
-        }
+      const overlapSession = workshopOverlapSession(workshop);
+      console.log('Validating workshop:', workshop.name, 'Overlap session:', overlapSession ? overlapSession.title : 'None');
+      if (overlapSession) {
+        errors[workshop.id] = `Workshop "${workshop.name}" conflicts with "${overlapSession.title}".`;
       }
     }
     return errors;
+  }
+
+  function workshopOverlapSession(workshop) {
+    if (workshop.category !== 'workshop') {
+      return false;
+    }
+    const sessionArray = Object.values(selectedSessions.value);
+    return sessionArray.find(session => sessionsOverlap(workshop, session));
+  }
+
+  function clearOverlapWorkshop() {
+    for (const addon of Object.values(selectedAddons.value)) {
+      if (addon.category === 'workshop' && workshopOverlapSession(addon)) {
+        delete selectedAddons.value[addon.id];
+      }
+    } 
   }
 
   return {
@@ -69,6 +84,8 @@ export function useAddons () {
     updateAddon,
     updateAddonQuantity,
     hasMerchandise,
-    validateAddons
+    validateAddons,
+    workshopOverlapSession,
+    clearOverlapWorkshop
   };
 }

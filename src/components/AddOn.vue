@@ -14,7 +14,7 @@ const props = defineProps({
   },
 })
 
-const { selectedAddons, groupedAddons, toggleAddon, updateAddon, updateAddonQuantity } = useAddons();
+const { selectedAddons, groupedAddons, toggleAddon, updateAddon, updateAddonQuantity, workshopOverlapSession } = useAddons();
 
 const quantity = ref(props.addon.quantity || 0);
 
@@ -37,6 +37,16 @@ const capacityDisplay = computed(() => {
 
 const active = computed(() => {
   return !!selectedAddons.value[props.addon.id]?.active
+})
+
+const isDisabled = computed(() => {
+  if (props.addon.capacity && props.addon.registered >= props.addon.capacity) {
+    return true;
+  }
+  if (props.addon.category === 'workshop') {
+    return !!workshopOverlapSession(props.addon);
+  }
+  return false;
 })
 
 function formatStartDate(date) {
@@ -64,6 +74,9 @@ function decrementQuantity() {
 }
 
 function selectAddon(key, value) {
+  if (isDisabled.value) {
+    return;
+  }
   if (!props.addon.maxQuantity) {
     toggleAddon(props.addon);
   } 
@@ -71,12 +84,12 @@ function selectAddon(key, value) {
 </script>
 
 <template>
-  <div class="card rounded border border-solid border-neutral-muted p-4" :class="{'active': active}" @click="selectAddon()">
+  <div class="card rounded border border-solid border-neutral-muted p-4" :class="{'active': active, 'full': isDisabled}" @click="selectAddon()">
     <div class="mb-2 flex items-center justify-between">
-      <div class="text-subtitle1 text-neutral">{{ props.addon.name }}</div>
+      <div class="title text-subtitle1 text-neutral">{{ props.addon.name }}</div>
       <div class="text-subtitle1 text-primary">${{ props.addon.price }}</div>
     </div>
-    <div class="mb-2 text-sm text-neutral-muted">{{ props.addon.description }}</div>
+    <div class="mb-2 body text-sm text-neutral-muted">{{ props.addon.description }}</div>
     <div v-if="props.addon.date && props.addon.endDate" class="mb-2 text-xs text-neutral-quiet">{{ formatStartDate(props.addon.date) }} - {{ formatEndDate(props.addon.endDate) }}</div>
     <div v-if="props.addon.capacity" class="text-xs text-neutral-quiet" :class="capacityDisplay.textClass">{{ capacityDisplay.text }}</div>
     <div class="flex items-center">

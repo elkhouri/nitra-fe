@@ -15,4 +15,18 @@
       background-color: var(--bg-brand-subtle-hover);
     }
   }
+
+  &.full {
+    background-color: var(--bg-surface-l2);
+    .badge {
+      background-color: transparent;
+      color: var(--text-gray-700);
+    }
+    .title {
+      color: var(--text-neutral-disabled);
+    }
+    .body {
+      color: var(--text-neutral-disabled);
+    }
+  }
 }
