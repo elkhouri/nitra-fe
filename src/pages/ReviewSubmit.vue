@@ -102,7 +102,7 @@ const usdFormatter = new Intl.NumberFormat('en-US', {
         <div v-if="!errors[STEPS.ADDON]?.[addon.id]" class="text-sm text-neutral">
           {{ addon.name }}
           <span v-if="addon.quantity">X {{ addon.quantity }}</span>
-          ({{usdFormatter.format(addon.price * (addon.quantity || 1))}})</div>
+          (${{addon.price * (addon.quantity || 1)}})</div>
         <div v-else class="text-sm text-danger">{{ addon.name }} (conflict)</div>
       </div>
     </div>
