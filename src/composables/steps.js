@@ -2,53 +2,69 @@ import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useValidation } from '../composables/validation';
 
-const currentStep = ref(1)
+export const STEPS = {
+  ATTENDEE: 'Step 1',
+  SESSION: 'Step 2',
+  ADDON: 'Step 3',
+  REVIEW: 'Step 4',
+  COMPLETE: 'Complete'
+}
+
+const currentStep = ref(STEPS.ATTENDEE)
 
 const stepRouteMap = {
-  1: 'attendee-info',
-  2: 'sessions',
-  3: 'addons',
-  4: 'review',
-  5: 'complete'
+  [STEPS.ATTENDEE]: 'attendee-info',
+  [STEPS.SESSION]: 'sessions',
+  [STEPS.ADDON]: 'addons',
+  [STEPS.REVIEW]: 'review',
+  [STEPS.COMPLETE]: 'complete'
 }
 export function useSteps() {
   const router = useRouter()
   const route = useRoute()
   const { validateForm, hasErrors, clearErrors } = useValidation()
 
-  const atLastStep = computed(() => currentStep.value === Object.keys(stepRouteMap).length)
+  const atLastStep = computed(() => currentStep.value === STEPS.COMPLETE)
 
   function goToNextStep() {
-    if (currentStep.value < Object.keys(stepRouteMap).length) {
-      if (currentStep.value === 4) {
-        validateForm()
-        if (hasErrors.value) {
-          return
-        }
+    if (currentStep.value === STEPS.REVIEW) {
+      validateForm()
+      if (hasErrors.value) {
+        return
       }
-      currentStep.value++
-      clearErrors()
-      routerNavigate()
     }
+
+    const nextSteps = {
+      [STEPS.ATTENDEE]: STEPS.SESSION,
+      [STEPS.SESSION]: STEPS.ADDON,
+      [STEPS.ADDON]: STEPS.REVIEW,
+      [STEPS.REVIEW]: STEPS.COMPLETE,
+    }
+    const nextStep = nextSteps[currentStep.value]
+    currentStep.value = nextStep
+    clearErrors()
+    routerNavigate(nextStep)
   }
 
   function goToPreviousStep() {
-    if (currentStep.value > 1) {
-      currentStep.value--
-      routerNavigate()
+    const prevSteps = {
+      [STEPS.SESSION]: STEPS.ATTENDEE,
+      [STEPS.ADDON]: STEPS.SESSION,
+      [STEPS.REVIEW]: STEPS.ADDON,
     }
+    const prevStep = prevSteps[currentStep.value]
+    currentStep.value = prevStep
+    clearErrors()
+    routerNavigate(prevStep)
   }
 
   function setStep(step) {
-    if (step >= 1 && step <= Object.keys(stepRouteMap).length) {
-      currentStep.value = step
-      // clearErrors()
-      routerNavigate()
-    }
+    currentStep.value = step
+    routerNavigate()
   }
 
-  function routerNavigate() {
-    const routeName = stepRouteMap[currentStep.value]
+  function routerNavigate(nextStep) {
+    const routeName = stepRouteMap[nextStep]
     if (routeName) {
       router.push({ name: routeName })
     }
@@ -58,7 +74,7 @@ export function useSteps() {
     const routeName = route.name
     const step = Object.keys(stepRouteMap).find(key => stepRouteMap[key] === routeName)
     if (step) {
-      currentStep.value = parseInt(step)
+      currentStep.value = step
     }
   }
 

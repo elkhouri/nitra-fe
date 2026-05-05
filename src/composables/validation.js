@@ -2,6 +2,7 @@ import { computed, ref } from 'vue';
 import { useAttendee } from '../composables/attendee';
 import { useSessions } from '../composables/sessions';
 import { useAddons } from '../composables/addons';
+import { STEPS } from './steps';
 
 const { validateAttendee } = useAttendee()
 const { validateSessions } = useSessions()
@@ -10,9 +11,9 @@ const { validateAddons } = useAddons()
 const errors = ref({});
 
 function validateForm() {
-  errors.value['Step 1'] = validateAttendee();
-  errors.value['Step 2'] = validateSessions();
-  errors.value['Step 3'] = validateAddons();
+  errors.value[STEPS.ATTENDEE] = validateAttendee();
+  errors.value[STEPS.SESSION] = validateSessions();
+  errors.value[STEPS.ADDON] = validateAddons();
 }
 
 function clearErrors() {
