@@ -68,7 +68,7 @@ export function useSteps() {
    */
   function setStep(step) {
     currentStep.value = step
-    routerNavigate()
+    routerNavigate(step)
   }
 
   /**
