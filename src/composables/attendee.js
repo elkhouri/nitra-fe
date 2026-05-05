@@ -21,7 +21,7 @@ export function useAttendee() {
    */
   function validateAttendee() {
     const errors = {};
-    const phoneRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/; // US/Canada 10-Digit Standard
+    const phoneRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/; // US/Canada 10-Digit Standard. Example from design (+1 (555) 123-456)
     const emailRegex = /\S+@\S+\.\S+/
 
     if (!attendeeInfo.value.name) {
