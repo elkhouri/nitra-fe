@@ -9,7 +9,6 @@ import { STEPS } from '../composables/steps';
 const { attendee, ticketType, attendeeInfo } = useAttendee()
 const { errors, hasErrors } = useValidation()
 const { hasMerchandise } = useAddons()
-ticketType.value = event.ticketTypes[0]
 
 function clearFieldError(field) {
   if (errors.value[STEPS.ATTENDEE]?.[field]) delete errors.value[STEPS.ATTENDEE][field]
