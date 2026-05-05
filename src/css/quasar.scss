@@ -1,6 +1,6 @@
 // header customization
 .q-header {
-  background-color: white;
+  background-color: var(--bg-surface-l0);
 }
 
 // stepper customization
@@ -72,7 +72,7 @@
 .q-stepper__tab--error  {
   .q-stepper__dot {
     background-color: var(--bg-danger-emphasis-rest) !important;
-    color: white;
+    color: var(--text-inverse-default);
     
   }
 

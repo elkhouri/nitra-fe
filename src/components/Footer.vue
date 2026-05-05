@@ -25,12 +25,12 @@ const nextButtonName = computed(() => {
 </script>
 
 <template>
-  <div class="bg-white border-t border-solid border-neutral-2 py-4 px-30">
+  <div class="bg-surface-l0 border-t border-solid border-neutral-2 py-4 px-30">
     <div class="flex justify-between items-center">
       <div>
         <button v-if="currentStep !== STEPS.ATTENDEE" class="bg-neutral-muted-rest hover:bg-neutral-muted-hover text-neutral-muted rounded py-2.5 px-5 border-radius-[10px] border-0 font-medium cursor-pointer" @click="goToPreviousStep">Back</button>
       </div>
-      <button :disabled="hasErrors && currentStep === STEPS.REVIEW" class="bg-orange-400 hover:bg-orange-500 text-white rounded py-2.5 px-5 border-radius-[10px] border-0 font-medium cursor-pointer" @click="goToNextStep">{{ nextButtonName }}</button>
+      <button :disabled="hasErrors && currentStep === STEPS.REVIEW" class="bg-orange-400 hover:bg-orange-500 text-inverse rounded-xl py-2.5 px-5 border-radius-[10px] border-0 font-medium cursor-pointer" @click="goToNextStep">{{ nextButtonName }}</button>
     </div>
   </div>
 </template>

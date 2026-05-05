@@ -15,6 +15,6 @@ const { setStep } = useSteps();
     <div class="mb-4 text-sm text-neutral-muted text-center">Thank you, {{ attendeeInfo.name }}! Your {{ ticketType.name }} registration for {{ event.name }} is confirmed.
       <br>You will receive a confirmation email at {{ attendeeInfo.email }}.
     </div>
-    <button class="bg-orange-400 hover:bg-orange-500 text-white font-medium py-2 px-4 rounded-lg border-0" @click="setStep(STEPS.ATTENDEE)">Back to Home</button>
+    <button class="bg-orange-400 hover:bg-orange-500 text-inverse font-medium py-2 px-4 rounded-lg border-0" @click="setStep(STEPS.ATTENDEE)">Back to Home</button>
   </q-page>
 </template>

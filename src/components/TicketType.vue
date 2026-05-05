@@ -12,7 +12,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="card p-5 border border-solid border-radius-m divider-default rounded-lg bg-surface-l1 hover:bg-surface-l2" :class="{active: props.active}">
+  <div class="card p-5 border border-solid border-radius-m border-neutral-muted rounded-lg bg-surface-l1 hover:bg-surface-l2" :class="{active: props.active}">
     <div class="mb-3 flex justify-between">
       <span class="text-subtitle1">{{ props.ticket.name }}</span>
       <span class="text-subtitle1">${{ props.ticket.price }}</span>
@@ -25,7 +25,7 @@ const props = defineProps({
       </div>
     </div>
     <div class="h-5">
-      <div v-if="props.active" class="text-[11px] font-medium py-[3px] px-3 bg-green-700 rounded-full text-white inline">
+      <div v-if="props.active" class="text-[11px] font-medium py-[3px] px-3 bg-green-700 rounded-full text-inverse inline">
         ✓ Selected
       </div>
     </div>
