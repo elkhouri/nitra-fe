@@ -29,5 +29,7 @@ export default function () {
       config: {},
       plugins: [],
     },
+
+    animations: 'all'
   }
 }

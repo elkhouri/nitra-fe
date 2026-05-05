@@ -28,7 +28,13 @@ const usdFormatter = new Intl.NumberFormat('en-US', {
 
 <template>
   <q-page>
-    <error-panel v-if="hasErrors" class="mb-6" :errors="errors"/>
+    <transition
+      appear
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
+    >
+      <error-panel v-if="hasErrors" class="mb-6" :errors="errors"/>
+    </transition>
     <div class="text-h3 text-neutral q-mb-lg">Review Your Registration</div>
 
     <div class="card mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: hasStepErrors('Step 1')}">
