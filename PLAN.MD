@@ -29,3 +29,4 @@ If I gain access to agentic coding, I imagine it'd be much faster in the initial
 - The nice to haves like the i18n and mobile RWD design.
 - Use local storage to store and retrieve state.
 - The UX can be improved with smoother transitions and animations.
+- Unit tests and E2E tests.
