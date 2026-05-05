@@ -1,11 +1,13 @@
+// header customization
 .q-header {
   background-color: white;
 }
 
+// stepper customization
 .q-stepper__dot {
   height: 32px;
   width: 32px;
-  font-size: 14px;
+  font-size: var(--font-size-md);
   font-weight: 600;
   background-color: var(--bg-surface-l2);
   
@@ -75,7 +77,7 @@
   }
 
   &.q-stepper__tab--error-with-icon .q-stepper__dot span{
-    font-size: 12px;
+    font-size: var(--font-size-sm);
   }
 
   .q-stepper__dot span, .q-stepper__title {
@@ -88,5 +90,21 @@
 
   &+ .q-stepper__tab .q-stepper__line:before {
     background: var(--bg-surface-l2);
+  }
+}
+
+// btn group customization
+.q-btn-group {
+  border-radius: 10px;
+  padding: 4px;
+  background-color: var(--bg-surface-l2);
+  box-shadow: none;
+
+  .q-btn.q-btn-item {
+    border-radius: 8px;
+    text-transform: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-neutral-muted);
   }
 }
