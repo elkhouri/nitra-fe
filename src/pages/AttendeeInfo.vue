@@ -9,6 +9,10 @@ const { attendee, ticketType, attendeeInfo } = useAttendee()
 const { errors, hasErrors } = useValidation()
 const { hasMerchandise } = useAddons()
 ticketType.value = event.ticketTypes[0]
+
+function clearFieldError(field) {
+  if (errors.value['Step 1']?.[field]) delete errors.value['Step 1'][field]
+}
 </script>
 
 <template>
@@ -29,38 +33,38 @@ ticketType.value = event.ticketTypes[0]
       <div class="flex space-x-6">
         <div class="flex-1" :class="{error: errors['Step 1']?.name}">
           <label class="text-sm text-neutral mb-1.5 block font-medium" for="name">Full Name</label>
-          <input id="name" type="text" v-model="attendeeInfo.name" class="w-full py-2.5 px-3 border border-solid border-neutral-muted rounded-lg text-lg" placeholder="John Doe"/>
+          <input id="name" type="text" v-model="attendeeInfo.name" class="w-full py-2.5 px-3 border border-solid border-neutral-muted rounded-lg text-lg" placeholder="Enter your full name" @change="clearFieldError('name')"/>
           <span v-if="errors['Step 1']?.name" class="mt-1.5 text-xs text-danger">{{ errors['Step 1'].name }}</span>
         </div>
         <div class="flex-1" :class="{error: errors['Step 1']?.email}">
           <label class="text-sm text-neutral mb-1.5 block font-medium" for="email">Email</label>
-          <input id="email" type="email" v-model="attendeeInfo.email" class="w-full py-2.5 px-3 border border-solid border-neutral-muted rounded-lg text-lg" placeholder="john.doe@example.com"/>
+          <input id="email" type="email" v-model="attendeeInfo.email" class="w-full py-2.5 px-3 border border-solid border-neutral-muted rounded-lg text-lg" placeholder="Enter your email" @change="clearFieldError('email')"/>
           <span v-if="errors['Step 1']?.email" class="mt-1.5 text-xs text-danger">{{ errors['Step 1'].email }}</span>
         </div>
       </div>
       <div class="flex space-x-6">
         <div class="flex-1" :class="{error: errors['Step 1']?.phone}">
           <label class="text-sm text-neutral mb-1.5 block font-medium" for="phone">Phone</label>
-          <input id="phone" type="text" v-model="attendeeInfo.phone" class="w-full py-2.5 px-3 border border-solid border-neutral-muted rounded-lg text-lg" placeholder="123-456-7890"/>
+          <input id="phone" type="text" v-model="attendeeInfo.phone" class="w-full py-2.5 px-3 border border-solid border-neutral-muted rounded-lg text-lg" placeholder="Enter your phone number" @change="clearFieldError('phone')"/>
           <span v-if="errors['Step 1']?.phone" class="mt-1.5 text-xs text-danger">{{ errors['Step 1'].phone }}</span>
 
         </div>
         <div class="flex-1" :class="{error: errors['Step 1']?.company}">
           <label class="text-sm text-neutral mb-1.5 block font-medium" for="company">Company</label>
-          <input id="company" type="text" v-model="attendeeInfo.company" class="w-full py-2.5 px-3 border border-solid border-neutral-muted rounded-lg text-lg" placeholder="Company Name"/>
+          <input id="company" type="text" v-model="attendeeInfo.company" class="w-full py-2.5 px-3 border border-solid border-neutral-muted rounded-lg text-lg" placeholder="Enter your company name" @change="clearFieldError('company')"/>
           <span v-if="errors['Step 1']?.company" class="mt-1.5 text-xs text-danger">{{ errors['Step 1'].company }}</span>
         </div>
       </div>
       <div :class="{error: errors['Step 1']?.jobTitle}">
         <label class="text-sm text-neutral mb-1.5 block font-medium" for="job-title">Job Title</label>
-        <input id="job-title" type="text" v-model="attendeeInfo.jobTitle" class="w-full py-2.5 px-3 border border-solid border-neutral-muted rounded-lg text-lg" placeholder="Job Title"/>
+        <input id="job-title" type="text" v-model="attendeeInfo.jobTitle" class="w-full py-2.5 px-3 border border-solid border-neutral-muted rounded-lg text-lg" placeholder="Enter your job title" @change="clearFieldError('jobTitle')"/>
         <span v-if="errors['Step 1']?.jobTitle" class="mt-1.5 text-xs text-danger">{{ errors['Step 1'].jobTitle }}</span>
       </div>
       <div :class="{error: errors['Step 1']?.shippingAddress}">
         <label class="text-sm text-neutral mb-1.5 block font-medium" for="shipping-address">Shipping Address
           <span>{{ hasMerchandise ? '*' : '(Optional)' }}</span>
         </label>
-        <input id="shipping-address" type="text" v-model="attendeeInfo.shippingAddress" class="w-full py-2.5 px-3 border border-solid border-neutral-muted rounded-lg text-lg" placeholder="Shipping Address"/>
+        <input id="shipping-address" type="text" v-model="attendeeInfo.shippingAddress" class="w-full py-2.5 px-3 border border-solid border-neutral-muted rounded-lg text-lg" placeholder="Enter your shipping address" @change="clearFieldError('shippingAddress')"/>
         <span v-if="errors['Step 1']?.shippingAddress" class="mt-1.5 text-xs text-danger">{{ errors['Step 1'].shippingAddress }}</span>
       </div>
     </form>
