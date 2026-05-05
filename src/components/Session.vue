@@ -51,7 +51,7 @@ function formatDate(date) {
 </script>
 
 <template>
-  <div class="card-drop-shadow rounded border border-solid border-neutral-muted p-4" :class="{active: props.active}">
+  <div class="card rounded border border-solid border-neutral-muted p-4" :class="{'active': props.active}">
     <div class="flex items-center justify-between">
       <div class="uppercase text-xs rounded-full py-[3px] px-2.5 bg-gray-50">{{ props.session.track }}</div>
       <q-checkbox size="xs" :model-value="active"/>
@@ -63,11 +63,3 @@ function formatDate(date) {
     <div class="text-xs" :class="capacityDisplay.textClass">{{ capacityDisplay.text }}</div>
   </div>
 </template>
-
-<style scoped>
-.active {
-  background-color: var(--bg-brand-subtle-rest);
-  border: 2px solid var(--bg-brand-emphasis-rest);
-  margin: -1px;
-}
-</style>

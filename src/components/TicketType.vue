@@ -12,7 +12,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="p-5 border border-solid border-radius-m divider-default rounded-lg cursor-pointer bg-surface-l1" :class="{active: props.active}">
+  <div class="card p-5 border border-solid border-radius-m divider-default rounded-lg bg-surface-l1 hover:bg-surface-l2" :class="{active: props.active}">
     <div class="mb-3 flex justify-between">
       <span class="text-subtitle1">{{ props.ticket.name }}</span>
       <span class="text-subtitle1">${{ props.ticket.price }}</span>
@@ -31,11 +31,3 @@ const props = defineProps({
     </div>
   </div>
 </template>
-
-<style scoped>
-.active {
-  background-color: var(--bg-brand-subtle-rest);
-  border: 2px solid var(--bg-brand-emphasis-rest);
-  margin: -1px;
-}
-</style>

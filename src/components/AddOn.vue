@@ -71,7 +71,7 @@ function selectAddon(key, value) {
 </script>
 
 <template>
-  <div class="card card-drop-shadow rounded border border-solid border-neutral-muted p-4" :class="{'card-active': active}" @click="selectAddon()">
+  <div class="card rounded border border-solid border-neutral-muted p-4" :class="{'active': active}" @click="selectAddon()">
     <div class="mb-2 flex items-center justify-between">
       <div class="text-subtitle1 text-neutral">{{ props.addon.name }}</div>
       <div class="text-subtitle1 text-primary">${{ props.addon.price }}</div>
