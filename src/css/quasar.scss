@@ -66,3 +66,27 @@
     background: var(--bg-brand-emphasis-rest);
   }
 }
+
+.q-stepper__tab--error  {
+  .q-stepper__dot {
+    background-color: var(--bg-danger-emphasis-rest) !important;
+    color: white;
+    
+  }
+
+  &.q-stepper__tab--error-with-icon .q-stepper__dot span{
+    font-size: 12px;
+  }
+
+  .q-stepper__dot span, .q-stepper__title {
+    color: var(--text-danger-default);
+  }
+
+  .q-stepper__line:before, .q-stepper__line:after {
+    background: var(--bg-surface-l2);
+  }
+
+  &+ .q-stepper__tab .q-stepper__line:before {
+    background: var(--bg-surface-l2);
+  }
+}

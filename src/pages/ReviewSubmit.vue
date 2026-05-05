@@ -14,7 +14,7 @@ const { selectedAddons, groupedAddons, toggleAddon, hasMerchandise } = useAddons
 const { selectedSessions, toggleSession, groupedSessions } = useSessions();
 const { currentStep, setStep } = useSteps()
 const { workshopDiscount, totalPrice } = useSummary()
-const { errors, hasErrors } = useValidation()
+const { errors, hasErrors, hasStepErrors } = useValidation()
 
 function formatSessionDate(dateStr) {
   return format(new Date(dateStr), 'MMM dd,hh:mm a');
@@ -31,7 +31,7 @@ const usdFormatter = new Intl.NumberFormat('en-US', {
     <error-panel v-if="hasErrors" class="mb-6" :errors="errors"/>
     <div class="text-h3 text-neutral q-mb-lg">Review Your Registration</div>
 
-    <div class="card mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: errors['Step 1']}">
+    <div class="card mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: hasStepErrors('Step 1')}">
       <div class="flex justify-between">
         <div class="card-title text-subtitle1">Attendee Information</div>
         <div class="text-sm underline text-teal-500"><router-link to="/" @click="setStep(1)">Edit → Step 1</router-link></div>
@@ -74,7 +74,7 @@ const usdFormatter = new Intl.NumberFormat('en-US', {
       </div>
     </div>
 
-    <div class="card mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: errors['Step 2']}">
+    <div class="card mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: hasStepErrors('Step 2')}">
       <div class="flex justify-between">
         <div class="card-title text-subtitle1">Selected Sessions</div>
         <div class="text-sm underline text-teal-500"><router-link to="/sessions" @click="setStep(2)">Edit → Step 2</router-link></div>
@@ -86,7 +86,7 @@ const usdFormatter = new Intl.NumberFormat('en-US', {
       </div>
     </div>
 
-    <div class="card mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: errors['Step 3']}">
+    <div class="card mb-6 rounded-md bg-surface-l1 p-5 space-y-3 border border-solid border-neutral-muted" :class="{error: hasStepErrors('Step 3')}">
       <div class="flex justify-between">
         <div class="card-title text-subtitle1">Add-ons</div>
         <div class="text-sm underline text-teal-500"><router-link to="/addons" @click="setStep(3)">Edit → Step 3</router-link></div>

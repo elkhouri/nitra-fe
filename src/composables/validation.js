@@ -20,15 +20,19 @@ function clearErrors() {
 }
 
 const hasErrors = computed(() => {
-  console.log('Current errors:', errors.value );
   return Object.keys(errors.value).length > 0;
 })
+
+function hasStepErrors(step) {
+  return Object.keys(errors.value[step] || {}).length > 0;
+}
 
 export function useValidation() {
   return {
     errors,
     validateForm,
     hasErrors,
-    clearErrors
+    clearErrors,
+    hasStepErrors
   }
 }

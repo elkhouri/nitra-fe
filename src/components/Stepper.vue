@@ -1,17 +1,20 @@
 <script setup>
 import { useSteps } from '../composables/steps';
+import { useValidation } from '../composables/validation';
 
 const { currentStep } = useSteps()
+const { errors, hasStepErrors } = useValidation()
 </script>
 
 <template>
   <div class="px-24 py-1 border-y border-solid divider-default">
-    <q-stepper :model-value="currentStep" ref="stepper" color="primary" active-icon="none" animated flat>
+    <q-stepper :model-value="currentStep" ref="stepper" color="primary" active-icon="none" done-icon="img:/img/check-icon.svg" error-icon="img:/img/exclamation-icon.svg" animated flat>
       <q-step
         :name="1"
         title="Attendee Info"
         prefix="1"
         :done="currentStep > 1"
+        :error="hasStepErrors('Step 1')"
         color="primary"
       >
       </q-step>
@@ -21,10 +24,11 @@ const { currentStep } = useSteps()
         title="Sessions"
         prefix="2"
         :done="currentStep > 2"
+        :error="hasStepErrors('Step 2')"
       >
       </q-step>
 
-      <q-step :name="3" title="Add-ons" prefix="3" :done="currentStep > 3">
+      <q-step :name="3" title="Add-ons" prefix="3" :done="currentStep > 3" :error="hasStepErrors('Step 3')">
       </q-step>
 
       <q-step :name="4" title="Review" prefix="4" :done="currentStep > 4">
