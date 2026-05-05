@@ -21,13 +21,15 @@ export function useAttendee() {
    */
   function validateAttendee() {
     const errors = {};
-    const phoneRegex = /^\+[1-9]\d{1,14}$/;
+    const phoneRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/; // US/Canada 10-Digit Standard
+    const emailRegex = /\S+@\S+\.\S+/
+
     if (!attendeeInfo.value.name) {
       errors.name = "Full Name is required.";
     }
     if (!attendeeInfo.value.email) {
       errors.email = "Email is required.";
-    } else if (!/\S+@\S+\.\S+/.test(attendeeInfo.value.email)) {
+    } else if (!emailRegex.test(attendeeInfo.value.email)) {
       errors.email = "Email format is invalid.";
     }
     if (!attendeeInfo.value.phone) {
