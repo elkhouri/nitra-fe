@@ -15,6 +15,7 @@ const { errors, hasStepErrors } = useValidation()
         prefix="1"
         :done="currentStep > 1"
         :error="hasStepErrors('Step 1')"
+        :active-icon="hasStepErrors('Step 1') ? 'img:/img/exclamation-icon.svg': 'none'"
         color="primary"
       >
       </q-step>
@@ -24,11 +25,19 @@ const { errors, hasStepErrors } = useValidation()
         title="Sessions"
         prefix="2"
         :done="currentStep > 2"
+        active-icon="hasStepErrors('Step 2') ? 'img:/img/exclamation-icon.svg': 'none'"
         :error="hasStepErrors('Step 2')"
       >
       </q-step>
 
-      <q-step :name="3" title="Add-ons" prefix="3" :done="currentStep > 3" :error="hasStepErrors('Step 3')">
+      <q-step
+        :name="3"
+        title="Add-ons"
+        prefix="3"
+        :done="currentStep > 3"
+        :error="hasStepErrors('Step 3')"
+        active-icon="hasStepErrors('Step 3') ? 'img:/img/exclamation-icon.svg': 'none'"
+      >
       </q-step>
 
       <q-step :name="4" title="Review" prefix="4" :done="currentStep > 4">
