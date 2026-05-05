@@ -64,7 +64,7 @@ export function useSteps() {
 
   /**
    * Sets the currentStep
-   * @param {Step} step - the step
+   * @param {string} step - the step
    */
   function setStep(step) {
     currentStep.value = step
@@ -73,7 +73,7 @@ export function useSteps() {
 
   /**
    * Goes to route associated with a step
-   * @param {Step} step - the step to navigate to
+   * @param {string} step - the step to navigate to
    */
   function routerNavigate(nextStep) {
     const routeName = stepRouteMap[nextStep]
